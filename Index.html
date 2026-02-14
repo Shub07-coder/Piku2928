@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Valentine's Day Pikuuuu ❤️</title>
+<style>
+body{
+    margin:0;
+    padding:0;
+    text-align:center;
+    font-family:'Segoe UI',sans-serif;
+    background: linear-gradient(135deg,#ff4e8d,#ff99cc,#ff66b2);
+    background-size:400% 400%;
+    animation:bg 8s infinite alternate;
+    color:white;
+    overflow:hidden;
+}
+@keyframes bg{
+    0%{background-position:left;}
+    100%{background-position:right;}
+}
+h1{
+    margin-top:40px;
+    font-size:42px;
+}
+button{
+    padding:15px 30px;
+    font-size:18px;
+    margin:10px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:white;
+    color:#ff4e8d;
+    transition:0.3s;
+}
+button:hover{
+    transform:scale(1.1);
+}
+#letter{
+    display:none;
+    font-size:20px;
+    margin:20px;
+}
+#response{
+    font-size:28px;
+    margin-top:20px;
+    font-weight:bold;
+}
+.heart, .gif{
+    position:fixed;
+    top:-50px;
+    font-size:20px;
+    animation: fall linear infinite;
+}
+.gif{
+    width:50px;
+    height:50px;
+}
+@keyframes fall{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(100vh);}
+}
+#slideshow{
+    margin-top:20px;
+    width:80%;
+    max-width:400px;
+    height:300px;
+    overflow:hidden;
+    border-radius:20px;
+    margin-left:auto;
+    margin-right:auto;
+}
+#slideshow img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:20px;
+}
+</style>
+</head>
+<body>
+
+<h1>Happy Valentine's Day Pikuuuu ❤️</h1>
+<h2>From Shubuu 💕</h2>
+
+<button onclick="showLetter()">Open Love Letter 💌</button>
+
+<div id="letter">
+    <p>
+    Pikuuuu ❤️<br><br>
+    She is the one I will choose even with 100 lives.<br><br>
+    In every lifetime, in every universe, I would still choose you.<br>
+    You are my happiness, my peace, my everything.<br><br>
+    Forever yours,<br>
+    Shubuu 💖
+    </p>
+</div>
+
+<h2>Will you be my Valentine? ❤️</h2>
+<button onclick="yesClicked()">YES ❤️</button>
+<button id="noButton" onclick="noClicked()">NO 💔</button>
+<div id="response"></div>
+
+<div id="slideshow">
+    <img src="https://i.postimg.cc/1z9gQmPT/photo1.jpg" id="slide" />
+</div>
+
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showLetter(){
+    document.getElementById("letter").style.display="block";
+}
+
+function yesClicked(){
+    document.getElementById("response").innerHTML="YAY ❤️ I LOVE YOU PIKUUUU 💕 🎉";
+    startHearts();
+    startGifs();
+}
+
+function noClicked(){
+    document.getElementById("noButton").style.display="none";
+    document.getElementById("response").innerHTML="Only option is YES ❤️ 😌";
+}
+
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},5000);
+}
+
+// Pre-selected cute GIF URLs
+let gifUrls = [
+    "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
+    "https://media.giphy.com/media/l0HlvtIPzPdt2usKs/giphy.gif",
+    "https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif"
+];
+
+function createGif(){
+    const gif=document.createElement("img");
+    gif.src=gifUrls[Math.floor(Math.random()*gifUrls.length)];
+    gif.classList.add("gif");
+    gif.style.left=Math.random()*100+"vw";
+    gif.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(gif);
+    setTimeout(()=>{gif.remove();},5000);
+}
+
+function startHearts(){
+    setInterval(createHeart,200);
+}
+
+function startGifs(){
+    setInterval(createGif,500);
+}
+
+// Slideshow
+let slides=[
+    "https://i.postimg.cc/1z9gQmPT/photo1.jpg",
+    "https://i.postimg.cc/1z9gQmPT/photo2.jpg",
+    "https://i.postimg.cc/1z9gQmPT/photo3.jpg"
+];
+let current=0;
+function slideShow(){
+    current=(current+1)%slides.length;
+    document.getElementById("slide").src=slides[current];
+}
+setInterval(slideShow,3000);
+</script>
+
+</body>
+</html>
